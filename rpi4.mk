@@ -15,8 +15,7 @@
 #
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
-USE_OEM_TV_APP := true
-$(call inherit-product, device/google/atv/products/atv_base.mk)
+$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 
 PRODUCT_NAME := rpi4
 PRODUCT_DEVICE := rpi4
@@ -24,10 +23,8 @@ PRODUCT_BRAND := arpi
 PRODUCT_MANUFACTURER := ARPi
 PRODUCT_MODEL := Raspberry Pi 4
 
-include frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk
-
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.drm.mode.force=1280x720 \
+    debug.drm.mode.force=1024x600 \
     gralloc.drm.kms=/dev/dri/card0 \
     gralloc.drm.device=/dev/dri/card1 \
     ro.opengles.version=196609 \
@@ -38,9 +35,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_SOONG_NAMESPACES += external/mesa3d
 
 # application packages
-PRODUCT_PACKAGES += \
-    DeskClock \
-    RpLauncher
+# PRODUCT_PACKAGES += \
+#     DeskClock \
+#     RpLauncher
 
 # system packages
 PRODUCT_PACKAGES += \
@@ -128,8 +125,13 @@ PRODUCT_COPY_FILES := \
     frameworks/base/data/sounds/effects/ogg/camera_click_48k.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/camera_click.ogg \
     $(PRODUCT_COPY_FILES)
 
-DEVICE_PACKAGE_OVERLAYS := device/arpi/rpi4/overlay
-PRODUCT_AAPT_PREF_CONFIG := tvdpi
-PRODUCT_CHARACTERISTICS := tv
+# Need AppWidget permission to prevent Launcher[2|3] crashing
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+DEVICE_PACKAGE_OVERLAYS := device/arpi/rpi4/overlay
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := mdpi
+PRODUCT_CHARACTERISTICS := tablet
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
