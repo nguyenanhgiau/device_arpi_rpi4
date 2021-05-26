@@ -15,13 +15,15 @@
 #
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
-$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/generic_no_telephony.mk)
 
 PRODUCT_NAME := rpi4
 PRODUCT_DEVICE := rpi4
 PRODUCT_BRAND := arpi
 PRODUCT_MANUFACTURER := ARPi
 PRODUCT_MODEL := Raspberry Pi 4
+
+include frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk
 
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.drm.mode.force=1024x600 \
@@ -35,9 +37,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_SOONG_NAMESPACES += external/mesa3d
 
 # application packages
-# PRODUCT_PACKAGES += \
-#     DeskClock \
-#     RpLauncher
+PRODUCT_PACKAGES += \
+    Launcher3
 
 # system packages
 PRODUCT_PACKAGES += \
@@ -134,4 +135,4 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_CHARACTERISTICS := tablet
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
