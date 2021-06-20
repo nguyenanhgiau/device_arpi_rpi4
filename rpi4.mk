@@ -133,6 +133,6 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS := device/arpi/rpi4/overlay
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := mdpi
-PRODUCT_CHARACTERISTICS := tablet
+PRODUCT_CHARACTERISTICS := telephony
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
