@@ -1,4 +1,4 @@
-Read it first : https://github.com/android-rpi/local_manifests/tree/arpi-11
+Read it first : https://github.com/nguyenanhgiau/local_manifests/tree/rpi4-a11-telephony
 
 # Build Kernel
   $ sudo apt install gcc-aarch64-linux-gnu libssl-dev bc
