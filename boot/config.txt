@@ -2,6 +2,9 @@ kernel=Image.gz
 arm_64bit=1
 device_tree=bcm2711-rpi-4-b.dtb
 dtparam=audio=on
+dtparam=i2c_arm=on
+#dtparam=i2s=on
+dtparam=spi=on
 dtoverlay=vc4-kms-v3d-pi4
 #dtoverlay=dwc2,dr_mode=peripheral
 initramfs ramdisk.img followkernel
