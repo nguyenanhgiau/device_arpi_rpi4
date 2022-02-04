@@ -46,7 +46,8 @@ arm_64bit=1
 # Uncomment some or all of these to enable the optional hardware interfaces
 #dtparam=i2c_arm=on
 #dtparam=i2s=on
-dtparam=spi=on
+
+# Support uboot-tpm: https://github.com/joholl/rpi4-uboot-tpm
 dtparam=spi=on
 dtoverlay=tpm-soft-spi
 
@@ -58,21 +59,16 @@ dtoverlay=tpm-soft-spi
 
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=on
-dtparam=i2c_arm=on
-#dtparam=i2s=on
-dtparam=spi=on
-dtoverlay=vc4-kms-v3d-pi4
 
 [pi4]
 # Enable DRM VC4 V3D driver on top of the dispmanx display stack
 #dtoverlay=vc4-fkms-v3d
 #max_framebuffers=2
+dtoverlay=vc4-kms-v3d-pi4
 
 [all]
 #dtoverlay=vc4-fkms-v3d
 initramfs ramdisk.img followkernel
-dtparam=spi=on
-dtoverlay=tpm-soft-spi
 enable_uart=1
 kernel=u-boot.bin
 #disable_overscan=1
