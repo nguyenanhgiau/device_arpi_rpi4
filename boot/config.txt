@@ -6,6 +6,11 @@ dtparam=i2c_arm=on
 #dtparam=i2s=on
 dtparam=spi=on
 dtoverlay=vc4-kms-v3d-pi4
+
+# Adding gpio-key
+gpio=16,20,21=ip,pu
+dtoverlay=arpi-gpio-key
+
 #dtoverlay=dwc2,dr_mode=peripheral
 initramfs ramdisk.img followkernel
 enable_uart=1
